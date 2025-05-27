@@ -1,0 +1,984 @@
+/* General Styling & Variables */
+:root {
+    --primary-dark: #1A1A1A; /* Deep charcoal / almost black */
+    --secondary-dark: #282828; /* Slightly lighter charcoal */
+    --accent-gray: #505050; /* Medium gray for subtle text/dividers */
+    --highlight-color: #00ADB5; /* A vibrant cool teal/cyan for accents and interactivity */
+    --text-color: #EEEEEE; /* Soft white / off-white for primary text */
+    --font-family-primary: 'Montserrat', sans-serif; /* Modern, clean sans-serif font */
+    --font-family-secondary: 'Roboto Mono', monospace; /* Monospace font for technical terms/logo */
+}
+
+/* Basic Reset & Body Styling */
+*, *::before, *::after {
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+body {
+    font-family: var(--font-family-primary);
+    background-color: var(--primary-dark);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll caused by animations */
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-weight: 600; /* Semi-bold for prominence */
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.8rem; }
+
+p {
+    margin-bottom: 1rem;
+    color: var(--accent-gray); /* Slightly subdued for readability */
+}
+
+/* Links */
+a {
+    color: var(--highlight-color);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; /* Smooth color transition on hover */
+}
+
+a:hover {
+    color: var(--text-color); /* Text color on hover */
+}
+
+/* Utility Class for Sections */
+section {
+    padding: 80px 0; /* Vertical padding for sections */
+    position: relative; /* For pseudo-elements and background animations */
+    overflow: hidden; /* Ensures content stays within bounds, useful for animations */
+}
+
+/* Highlighted text within paragraphs */
+.highlight-text {
+    color: var(--highlight-color);
+    font-weight: 600;
+}
+
+/* Header & Navigation */
+header {
+    background-color: rgba(26, 26, 26, 0.9); /* Slightly transparent dark background */
+    padding: 1rem 0;
+    position:relative; /* Makes header stick to the top on scroll */
+    top: 0;
+    z-index: 1000; /* Ensures header is above other content */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    backdrop-filter: blur(5px); /* Modern frosted glass effect for transparency */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Max width for content within nav */
+    margin: 0 auto; /* Center the nav content */
+    padding: 0 2rem; /* Horizontal padding */
+}
+
+.logo {
+    font-family: var(--font-family-secondary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--highlight-color);
+    letter-spacing: 1px; /* Spacing for a refined look */
+}
+
+nav ul {
+    list-style: none; /* Remove bullet points */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Arrange list items horizontally */
+}
+
+nav ul li {
+    margin-left: 30px; /* Space between nav items */
+}
+
+nav ul li a {
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: 1.1rem;
+    position: relative; /* For the animated underline */
+    padding-bottom: 5px; /* Space for the underline */
+}
+
+/* Animated Underline for Navigation Links */
+nav ul li a::after {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute;
+    width: 0; /* Starts hidden */
+    height: 2px;
+    background-color: var(--highlight-color);
+    left: 50%; /* Center the underline */
+    bottom: 0;
+    transform: translateX(-50%); /* Adjust for perfect centering */
+    transition: width 0.3s ease-in-out; /* Smooth width animation */
+}
+
+nav ul li a:hover::after {
+    width: 100%; /* Expands to full width on hover */
+}
+.shine{
+    color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+}
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 300px;
+  }
+}
+
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    display: inline-block; /* Allows padding and width/height */
+    padding: 12px 25px;
+    border-radius: 5px; /* Rounded corners */
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions for multiple properties */
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Subtle shadow */
+    text-align: center; /* Center text within button */
+}
+
+.btn-primary {
+    background-color: var(--highlight-color);
+    color: var(--primary-dark); /* Dark text on highlight background */
+    
+}
+
+.btn-primary:hover {
+    background-color: var(--text-color); /* Light background on hover */
+    color: var(--primary-dark);
+    transform: translateY(-3px); /* Lifts button slightly on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); /* Enhanced shadow on hover */
+}
+
+.btn-secondary {
+    background-color: var(--secondary-dark);
+    color: var(--highlight-color);
+    border: 1px solid var(--highlight-color); /* Border matching highlight color */
+}
+
+.btn-secondary:hover {
+    background-color: var(--highlight-color); /* Highlight background on hover */
+    color: var(--primary-dark);
+    transform: translateY(-3px); /* Lifts button slightly on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); /* Enhanced shadow on hover */
+}
+
+/* Hero Section */
+#hero {
+    background-color: var(--primary-dark);
+    min-height: 80vh; /* Takes at least 80% of viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    z-index: 1; /* Ensures content is above background animation */
+    position: relative;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+#hero h1 {
+    font-size: 4.5rem;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+    animation: fadeInDown 1s ease-out forwards; /* Entry animation for heading */
+}
+
+#hero p {
+    font-size: 1.6rem;
+    color: var(--accent-gray);
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease-out forwards 0.3s; /* Staggered entry for paragraph */
+    opacity: 0; /* Start hidden for animation */
+}
+
+#hero .btn-primary {
+    animation: zoomIn 1s ease-out forwards 0.6s; /* Staggered entry for button */
+    opacity: 0; /* Start hidden for animation */
+}
+
+/* Background animation for Hero (subtle, abstract network lines/glow) */
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Creates two subtle radial gradients, mimicking network nodes/energy */
+    background: radial-gradient(circle at top left, rgba(0,173,181,0.1) 0%, transparent 40%),
+                radial-gradient(circle at bottom right, rgba(0,173,181,0.1) 0%, transparent 40%);
+    background-size: 100% 100%;
+    animation: pulseBackground 8s infinite alternate ease-in-out; /* Pulsing animation */
+    opacity: 0.5;
+}
+
+/* Keyframe for Hero background pulse */
+@keyframes pulseBackground {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.05); opacity: 0.6; }
+}
+
+/* Shooting Star Animation */
+.shooting-star {
+    position: absolute;
+    background: linear-gradient(-45deg, var(--highlight-color), rgba(0, 173, 181, 0)); /* Tail effect */
+    border-radius: 50%;
+    filter: blur(1px); /* Soft blur for a glowing effect */
+    opacity: 0;
+    width: 4px; /* Width of the star head */
+    height: 4px; /* Height of the star head */
+    transform: rotate(-45deg); /* Angle of the shooting star */
+    animation: shoot 8s linear infinite; /* Main shooting animation */
+    z-index: 0; /* Behind hero content */
+}
+
+/* Individual star positioning and animation delays/durations */
+.star-1 {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+    animation-duration: 8s;
+}
+
+.star-2 {
+    top: 30%;
+    left: 70%;
+    animation-delay: 2s;
+    animation-duration: 10s;
+}
+
+.star-3 {
+    top: 50%;
+    left: 10%;
+    animation-delay: 4s;
+    animation-duration: 7s;
+}
+
+.star-4 {
+    top: 70%;
+    left: 40%;
+    animation-delay: 6s;
+    animation-duration: 9s;
+}
+
+.star-5 {
+    top: 20%;
+    left: 90%;
+    animation-delay: 8s;
+    animation-duration: 6s;
+}
+
+.star-6 {
+    top: 80%;
+    left: 60%;
+    animation-delay: 10s;
+    animation-duration: 11s;
+}
+
+@keyframes shoot {
+    0% {
+        transform: translate(-100vw, -100vh) rotate(-45deg); /* Start far top-left */
+        opacity: 0;
+    }
+    10% {
+        opacity: 1; /* Fade in */
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100vw, 100vh) rotate(-45deg); /* End far bottom-right */
+        opacity: 0; /* Fade out */
+    }
+}
+
+
+/* About Section */
+#about {
+    background-color: var(--secondary-dark);
+    padding: 100px 0;
+    text-align: center;
+}
+
+#about h2 {
+    margin-bottom: 3rem;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px; /* Text on left, photo on right */
+    gap: 50px; /* Space between grid items */
+    max-width: 900px;
+    margin: 0 auto;
+    align-items: center; /* Vertically align items */
+    padding: 0 20px;
+}
+
+.about-text {
+    text-align: left;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /* Makes it circular */
+    overflow: hidden; /* Hides image overflow */
+    border: 5px solid var(--highlight-color); /* Border matching highlight color */
+    box-shadow: 0 0 20px rgba(0, 173, 181, 0.3); /* Subtle glow effect */
+    position: relative;
+    transition: transform 0.4s ease-in-out; /* Smooth transform on hover */
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    display: block;
+    filter: grayscale(80%); /* Professional grayscale effect */
+    transition: filter 0.4s ease-in-out; /* Smooth filter transition */
+}
+
+.profile-photo:hover {
+    transform: scale(1.03) rotate(-2deg); /* Slightly enlarges and rotates on hover */
+}
+
+.profile-photo:hover img {
+    filter: grayscale(0%); /* Full color on hover */
+}
+
+/* Skills Section */
+#skills {
+    background-color: var(--primary-dark);
+    padding: 100px 0;
+    text-align: center;
+}
+
+#skills h2 {
+    margin-bottom: 3rem;
+}
+
+.skills-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Space between skill categories */
+    flex-wrap: wrap; /* Allows categories to wrap to the next line on smaller screens */
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.skill-category {
+    background-color: var(--secondary-dark);
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px; /* Fixed width for consistency */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid var(--highlight-color); /* Bottom border accent */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+.skill-category:hover {
+    transform: translateY(-10px); /* Lifts category slightly on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
+}
+
+.skill-category h3 {
+    color: var(--highlight-color);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Underline for skill category headings */
+.skill-category h3::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent-gray);
+    margin: 10px auto 0; /* Centers the underline */
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.skill-category ul li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px dashed rgba(80, 80, 80, 0.3); /* Dashed separator */
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Smooth hover effects */
+}
+
+.skill-category ul li:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.skill-category ul li:hover {
+    background-color: rgba(0, 173, 181, 0.05); /* Subtle highlight on hover */
+    padding-left: 10px; /* Indent on hover */
+}
+
+/* Bullet point for skill items */
+.skill-item::before {
+    content: '•';
+    color: var(--highlight-color);
+    margin-right: 10px;
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+/* Projects Section */
+#projects {
+    background-color: var(--secondary-dark);
+    padding: 100px 0;
+    text-align: center;
+}
+
+#projects h2 {
+    margin-bottom: 3rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid columns */
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.project-card {
+    background-color: var(--primary-dark);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    text-align: left;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease; /* Smoother transition curve */
+    border-top: 3px solid var(--highlight-color); /* Top border accent */
+    position: relative;
+    overflow: hidden; /* Important for the animated overlay */
+}
+
+/* Styling for project images */
+.project-image {
+    width: calc(100% + 60px); /* Span full width of card including padding */
+    margin: -30px -30px 20px -30px; /* Adjust to fill top of card, then add margin below */
+    display: block;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    height: 200px; /* Fixed height for consistency, adjust as needed */
+    transition: transform 0.3s ease-in-out;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05); /* Slightly zoom in on hover */
+}
+
+/* Animated overlay for project cards (shine effect) */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0,173,181,0.05) 0%, rgba(0,0,0,0) 50%, rgba(0,173,181,0.05) 100%);
+    transform: translateX(-100%); /* Starts off-screen to the left */
+    transition: transform 0.6s ease-out; /* Smooth slide-in animation */
+    z-index: 0; /* Behind content */
+}
+
+.project-card:hover::before {
+    transform: translateX(0%); /* Slides in on hover */
+}
+
+.project-card:hover {
+    transform: translateY(-15px) scale(1.02); /* Lifts and slightly scales on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); /* Enhanced shadow on hover */
+}
+
+.project-card h3, .project-card p, .project-card .btn-secondary {
+    position: relative; /* Ensures text and button are above the ::before overlay */
+    z-index: 1;
+}
+
+.project-card h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+}
+
+.project-card p {
+    color: var(--accent-gray);
+    margin-bottom: 25px;
+}
+
+/* Cybersecurity Interests Section */
+#cybersecurity {
+    background-color: var(--primary-dark);
+    padding: 100px 0;
+    text-align: center;
+}
+
+#cybersecurity h2 {
+    margin-bottom: 2rem;
+}
+
+#cybersecurity p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    color: var(--text-color);
+}
+
+.interest-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.interest-list .skill-item {
+    background-color: var(--secondary-dark);
+    color: var(--highlight-color);
+    padding: 10px 20px;
+    border-radius: 20px; /* Pill shape */
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.interest-list .skill-item:hover {
+    background-color: var(--highlight-color);
+    color: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+/* Contact Section */
+#contact {
+    background-color: var(--secondary-dark);
+    padding: 100px 0;
+    text-align: center;
+}
+
+#contact h2 {
+    margin-bottom: 2rem;
+}
+
+/* From Uiverse.io by omriluz */ 
+.form-container {
+  width: 400px;
+  background: linear-gradient(#212121, #212121) padding-box,
+              linear-gradient(145deg, transparent 35%,#007070, #54ccfc) border-box;
+  border: 3px solid transparent;
+  padding: 32px 24px;
+  font-size: 14px;
+  margin: 40px auto;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background-size: 200% 100%;
+  animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.form-container button:active {
+  scale: 0.95;
+}
+
+.form-container .form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-container .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.form-container .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #717171;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.form-container .form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: inherit;
+  background-color: transparent;
+  border: 1px solid #414141;
+}
+
+.form-container .form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  resize: none;
+  color: #fff;
+  height: 96px;
+  border: 1px solid #414141;
+  background-color: transparent;
+  font-family: inherit;
+}
+
+.form-container .form-group input::placeholder {
+  opacity: 0.5;
+}
+
+.form-container .form-group input:focus {
+  outline: none;
+  border-color: #003a3a;
+}
+
+.form-container .form-group textarea:focus {
+  outline: none;
+  border-color: #013c3c;
+}
+
+/* From Uiverse.io by imtausef */ 
+.button {
+    width: 120px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  border-radius: 16px;
+  border: none;
+ left: 110px;
+  padding: 2px;
+  background: radial-gradient(circle 80px at 80% -10%, #ffffff, #181b1b);
+  position: relative;
+  transition:
+  background 0.3s,transform 0.3s;
+}
+
+.button:hover {
+  /*background: radial-gradient(circle 80px at 80% -10%, #181b1b, #000);*/
+  transform: scale(0.98);
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  width: 65%;
+  height: 60%;
+  border-radius: 120px;
+  top: 0;
+  right: 0;
+  box-shadow: 0 0 20px #ffffff38;
+  z-index: -1;
+  transition: box-shadow 0.3s;
+}
+
+.button:hover::after {
+  box-shadow: 0 0 10px #ffffff18;
+}
+
+.blob1 {
+  position: absolute;
+  width: 70px;
+  height: 100%;
+  border-radius: 16px;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(
+    circle 60px at 0% 100%,
+    #3fe9ff,
+    #0000ff80,
+    transparent
+  );
+  box-shadow: -10px 10px 30px #0051ff2d;
+  transition:
+    background 0.3s,
+    box-shadow 0.3s;
+}
+
+.button:hover .blob1 {
+  /*  background: radial-gradient(circle 60px at 0% 100%, #181b1b, #000);*/
+  box-shadow: -5px 5px 20px #000;
+}
+
+.inner {
+  padding: 14px 25px;
+  border-radius: 14px;
+  color: #fff;
+  z-index: 3;
+  position: relative;
+  background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+  transition: background 0.3s;
+}
+
+.button:hover .inner {
+  background: radial-gradient(circle 80px at 80% -50%, #333333, #0f0f0f);
+}
+
+.inner::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 14px;
+  background: radial-gradient(
+    circle 60px at 0% 100%,
+    #00e1ff1a,
+    #0000ff11,
+    transparent
+  );
+  position: absolute;
+  transition: opacity 0.3s;
+}
+
+.button:hover .inner::before {
+  opacity: 0;
+}
+
+
+.form-container .form-submit-btn:hover {
+  background-color: var(--highlight-color);
+  border-color: #fff;
+}
+
+
+
+
+.contact-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Allows links to wrap on smaller screens */
+    padding: 0 20px;
+}
+
+.icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-dark);
+    color: var(--highlight-color);
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.icon-link:hover {
+    background-color: var(--highlight-color);
+    color: var(--primary-dark);
+    transform: translateY(-5px); /* Lifts icon on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-dark);
+    padding: 30px 0;
+    text-align: center;
+    color: var(--accent-gray);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(80, 80, 80, 0.2); /* Subtle top border */
+}
+
+/* Keyframe Animations (for entry and subtle movements) */
+
+/* Fade in from top */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade in from bottom */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Zoom in effect */
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive Design (Basic Breakpoints) */
+@media (max-width: 992px) {
+    h1 { font-size: 3.8rem; }
+    h2 { font-size: 2.2rem; }
+    h3 { font-size: 1.6rem; }
+
+    .about-grid {
+        grid-template-columns: 1fr; /* Stack photo and text */
+        text-align: center;
+    }
+
+    .profile-photo {
+        margin: 30px auto 0; /* Center photo when stacked */
+    }
+
+    .skills-grid, .project-grid {
+        gap: 30px;
+    }
+
+    .skill-category {
+        width: 45%; /* Two columns on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+
+    nav {
+        flex-direction: column; /* Stack nav items vertically */
+        padding: 1rem;
+    }
+
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap; /* Allow nav links to wrap */
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 15px 10px; /* Adjust spacing for wrapped links */
+    }
+
+    #hero p {
+        font-size: 1.2rem;
+    }
+
+    .skills-grid, .project-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+
+    .skill-category {
+        width: 85%; /* Wider on small screens */
+        margin: 0 auto;
+    }
+
+    .contact-links {
+        flex-direction: column; /* Stack contact links vertically */
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.3rem; }
+
+    .btn-primary, .btn-secondary {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .profile-photo {
+        width: 250px;
+        height: 250px;
+    }
+}
